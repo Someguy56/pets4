@@ -23,6 +23,7 @@
 
 
     $f3->set('colors', array('pink', 'green', 'blue'));
+    $f3->set('breeds', array('Affenpinscher', 'Afghan Hound', 'Airedale Terrier'));
 
     require_once("model/validation-functions.php");
 

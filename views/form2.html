@@ -23,6 +23,15 @@
         </select>
     </label>
 
+    <label>Breed
+        <repeat group="{{@breeds}}" value="{{@breedOption}}">
+            <label>
+                <input type="checkbox" value="{{@breedOption}}" name="breeds[]">
+            {{@breedOption}}</label>
+
+        </repeat>
+    </label>
+
     <button type="submit">Submit</button>
 </form>
 
