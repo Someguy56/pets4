@@ -18,3 +18,8 @@ function validString($string){
         return false;
     }
 }
+
+function validQty($qty)
+{
+    return !empty($qty) && ctype_digit($qty) && $qty >= 1;
+}
