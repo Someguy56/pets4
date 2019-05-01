@@ -1,0 +1,16 @@
+{
+  "name": "mlee/IT328/pets4",
+  "authors": [
+    {
+      "name": "Bo Zhang",
+      "email": "bzhang3@mail.greenriver.edu"
+    },
+    {
+      "name": "Maxwell Lee",
+      "email": "mlee77@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
