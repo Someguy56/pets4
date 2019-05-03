@@ -69,27 +69,24 @@
             session_start();
         }
 
-        if(isset($_POST['animal'])) {
+        if(isset($_POST['animal']) && isset($_POST['qty'])) {
             $animal = $_POST['animal'];
-            if(validString($animal)) {
-                $_SESSION['animal'] = $animal;
-                $f3->reroute('/order2');
-            }
-            else {
-                $f3->set("errors['animal']", "Please enter an animal.");
-                $f3->set("previous", $animal);
-            }
-        }
-
-        if(isset($_POST['qty'])) {
             $qty = $_POST['qty'];
-            if(validQty($qty))
-            {
+            if(validString($animal) && validQty($qty)) {
+                $_SESSION['animal'] = $animal;
                 $_SESSION['qty'] = $qty;
                 $f3->reroute('/order2');
             }
             else {
-                $f3->set("errors['qty']", "Quantity must be larger than 0");
+                if(!validString($animal))
+                {
+                    $f3->set("errors['animal']", "Please enter an animal.");
+                }
+                if(!validQty($qty))
+                {
+                    $f3->set("errors['qty']", "Quantity must be larger than 0");
+                }
+                $f3->set("previous", $animal);
                 $f3->set("previousQty", $qty);
             }
         }
@@ -103,12 +100,24 @@
 
         if(isset($_POST['color'])) {
             $color = $_POST['color'];
-            if(validString($color) && $color !== "--Select a color--") {
+            $breed = $_POST['breed'];
+
+            $f3->set('breed', $breed);
+            $f3->set('color', $color);
+            if((validString($color) && $color !== "--Select a color--") && validBreed($breed)) {
                 $_SESSION['color'] = $color;
+                $_SESSION['breed'] = $breed;
                 $f3->reroute('/results');
             }
             else {
-                $f3->set("errors['color']", "Please select a color.");
+                if(!validString($color) || $color === "--Select a color--")
+                {
+                    $f3->set("errors['color']", "Please select a color.");
+                }
+                if(!validBreed($breed))
+                {
+                    $f3->set("errors['breed']", "Please select a breed.");
+                }
             }
         }
 

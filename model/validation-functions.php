@@ -23,3 +23,22 @@ function validQty($qty)
 {
     return !empty($qty) && ctype_digit($qty) && $qty >= 1;
 }
+
+function validBreed($breed)
+{
+    global $f3;
+
+    if(empty($breed))
+    {
+        return false;
+    }
+
+    foreach($breed as $option)
+    {
+        if(!in_array($option, $f3->get('breeds')))
+        {
+            return false;
+        }
+    }
+    return true;
+}
